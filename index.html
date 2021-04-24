@@ -2,7 +2,6 @@
 <html>
 
 <head>
-    <script src="JsBarcode.all.min.js"></script>
     <title>Bar</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -13,7 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="JsBarcode.all.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/canvg@3.0.4/lib/umd.js"></script>
+    <script src="qrcode.min.js"></script>
+
     <style>
+        #wrap *{
+            background-color: white;
+            padding: 10rem;
+        }
+
         body {
             font-family: 'Spectral', serif;
             background-color: black;
@@ -47,10 +53,12 @@
             display: table;
             clear: both;
         }
-
+        #inp{
+            width: 90%;
+        }
         input,
         button,
-        select {
+        select,textarea {
             font-family: 'Spectral', serif;
             background-color: black;
             color: #FF4500;
@@ -122,11 +130,14 @@
         <div class="row">
             <div oninput="make();" class="column">
                 <label>Data: </label>
-                <input type="text" id="inp" value="123">
+                <!--<input type="text" id="inp" placeholder="123">-->
+                <br>
+                <textarea placeholder="123" name="inp" id="inp" cols="30" rows="10"></textarea>
                 <br>
                 <label>Type: </label>
                 <select id="type">
                     <option value="CODE128">CODE128</option>
+                    <option value="qr">QR Code</option>
                     <option value="EAN13">EAN13</option>
                     <option value="EAN8">EAN8</option>
                     <option value="EAN5">EAN5</option>
@@ -146,19 +157,18 @@
                 <input class="slider" type="range" min="0" max="10" value="2" id="width">
                 <br>
                 <label>Height: </label>
-                <input class="slider" type="range" min="50" max="500" value="100" id="height">
+                <input class="slider" type="range" min="0" max="500" value="100" id="height">
                 <br>
                 <button onClick="down();">Download</button>
                 <button onClick="print();">Print</button>
             </div>
             <div class="column" id="wrap">
-                <svg id="barcode"></svg>
             </div>
         </div>
     </article>
     <div id="downer"></div>
-    <canvas id="canvas">
-        <iframe id="printer" style="display:none;"></iframe>
+    <canvas id="canvas"></canvas>
+    <iframe id="printer" style="display:none;"></iframe>
 </body>
 
 </html>
