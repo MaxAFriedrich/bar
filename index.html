@@ -3,161 +3,29 @@
 
 <head>
     <title>Bar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Spectral&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="JsBarcode.all.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/canvg@3.0.4/lib/umd.js"></script>
-    <script src="qrcode.min.js"></script>
-
-    <style>
-        #wrap *{
-            background-color: white;
-            padding: 10rem;
-        }
-
-        body {
-            font-family: 'Spectral', serif;
-            background-color: black;
-            color: #FF4500;
-        }
-
-        article {
-            width: 80%;
-            background-color: rgb(34, 34, 34);
-            padding: 2%;
-            margin: 10%;
-        }
-
-        h1 {
-            margin-left: 45%;
-        }
-
-        canvas {
-            display: none;
-        }
-
-        .column {
-            float: left;
-            width: 50%;
-            margin: 0 auto;
-        }
-
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-        #inp{
-            width: 90%;
-        }
-        input,
-        button,
-        select,textarea {
-            font-family: 'Spectral', serif;
-            background-color: black;
-            color: #FF4500;
-            border: none;
-            margin: 10px;
-
-        }
-
-        label {
-            font-size: 20px;
-        }
-
-        .slider {
-            -webkit-appearance: none;
-            width: 50%;
-            height: 8px;
-            border-radius: 1px;
-            background: black;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-        }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: #FF4500;
-            cursor: pointer;
-        }
-
-        .slider::-moz-range-thumb {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: #FF4500;
-            cursor: pointer;
-        }
-
-        @media screen and (max-width: 600px) {
-            .column {
-                float: none;
-                width: 70%;
-                margin: 5%;
-
-            }
-
-            .row {
-                margin: 0 auto;
-            }
-
-            /* Clear floats after the columns */
-            .row:after {
-                content: "";
-                display: block;
-                clear: both;
-            }
-        }
-    </style>
+    <link href="main.css" rel="stylesheet">
+    <script src="libs/qrcode.min.js"></script>
     <script src="main.js"></script>
 </head>
 
 <body onload="make();">
     <article>
-        <h1>Bar</h1>
         <div class="row">
-            <div oninput="make();" class="column">
+            <div oninput="make();" class="column" id="settings">
+                <h1>Bar</h1>
+
                 <label>Data: </label>
                 <!--<input type="text" id="inp" placeholder="123">-->
                 <br>
                 <textarea placeholder="123" name="inp" id="inp" cols="30" rows="10"></textarea>
                 <br>
-                <label>Type: </label>
-                <select id="type">
-                    <option value="CODE128">CODE128</option>
-                    <option value="qr">QR Code</option>
-                    <option value="EAN13">EAN13</option>
-                    <option value="EAN8">EAN8</option>
-                    <option value="EAN5">EAN5</option>
-                    <option value="EAN2">EAN2</option>
-                    <option value="UPC">UPC</option>
-                    <option value="CODE39 ">CODE39 </option>
-                    <option value="ITF14">ITF14</option>
-                    <option value="MSI">MSI</option>
-                    <option value="pharmacode">pharmacode</option>
-                    <option value="codabar">codabar</option>
-                </select>
-                <br>
                 <label>Color: </label>
                 <input type="color" id="color" placeholder="#fff">
-                <br>
-                <label>Width: </label>
-                <input class="slider" type="range" min="0" max="10" value="2" id="width">
-                <br>
-                <label>Height: </label>
-                <input class="slider" type="range" min="0" max="500" value="100" id="height">
                 <br>
                 <button onClick="down();">Download</button>
                 <button onClick="print();">Print</button>

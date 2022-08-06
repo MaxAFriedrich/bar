@@ -1,9 +1,9 @@
 function make() {
-    if (document.getElementById("type").value == "qr") {
-        document.getElementById("width").style.display = "none";
+    try {
+        height = Math.min(document.getElementById("wrap").clientHeight, document.getElementById("wrap").clientWidth);
         document.getElementById("wrap").innerHTML = new QRCode({
             msg: document.getElementById("inp").value
-            , dim: document.getElementById("height").value
+            , dim: height
             , pad: 4
             , mtx: -1
             , ecl: "H"
@@ -12,16 +12,10 @@ function make() {
             , vrb: 0
 
         }).outerHTML;
-    } else {
-        document.getElementById("width").style.display = "inline";
-        document.getElementById("wrap").innerHTML = `<svg id="barcode"></svg>`;
-        JsBarcode("#barcode", document.getElementById("inp").value, {
-            format: document.getElementById("type").value,
-            lineColor: document.getElementById("color").value,
-            height: document.getElementById("height").value,
-            width: document.getElementById("width").value,
 
-        });
+    }
+    catch {
+
     }
 }
 
