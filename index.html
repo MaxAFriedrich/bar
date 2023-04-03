@@ -2,42 +2,21 @@
 <html>
 
 <head>
-    <title>Bar</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link href="main.css" rel="stylesheet">
-    <script src="libs/qrcode.min.js"></script>
-    <script src="libs/umd.js"></script>
-    <script src="main.js"></script>
+  <title>Bar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link href="main.css" rel="stylesheet">
+  <script src="libs/qrcode.min.js"></script>
+  <script src="main.js"></script>
 </head>
 
 <body onload="make();">
-    <article>
-        <div class="row">
-            <div oninput="make();" class="column" id="settings">
-                <h1>Bar</h1>
-
-                <label>Data: </label>
-                <!--<input type="text" id="inp" placeholder="123">-->
-                <br>
-                <textarea placeholder="123" name="inp" id="inp" cols="30" rows="10"></textarea>
-                <br>
-                <label>Color: </label>
-                <input type="color" id="color" placeholder="#fff">
-                <br>
-                <button onClick="down();">Download</button>
-                <button onClick="print();">Print</button>
-            </div>
-            <div class="column" id="wrap">
-            </div>
-        </div>
-    </article>
-    <div id="downer"></div>
-    <canvas id="canvas"></canvas>
-    <iframe id="printer" style="display:none;"></iframe>
+  <textarea oninput="make(this)" placeholder="123" name="inp" id="inp" cols="30" rows="10"></textarea>
+  <div id="qr_code">
+  </div>
 </body>
 
 </html>
