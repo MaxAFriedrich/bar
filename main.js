@@ -19,5 +19,5 @@ window.onload = () => {
   const input = document.getElementById("input")
   input.value = new URLSearchParams(window.location.search).get("text")
   input.addEventListener("keyup",()=>{make(input.value)})
-  make("123")
+  make(input.value)
 }
